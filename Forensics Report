@@ -1,0 +1,101 @@
+1. Executive Summary
+Incident Overview: One paragraph summary of what happened (e.g., unauthorized access, malware, insider threat).
+Timeline: Key dates/times (discovery, escalation, response).
+Impact Summary: What was affected? (Data, systems, people).
+Conclusion: Brief mention of root cause and next steps.
+
+2. Objectives and Scope
+Goals:
+Identify indicators of compromise (IOCs).
+Understand attacker’s method and impact.
+Preserve and document digital evidence.
+
+Scope:
+Devices, users, systems under investigation.
+Time window covered by the investigation.
+Any exclusions or assumptions.
+
+3. Methodology
+Use forensic best practices for evidence handling:
+Acquisition:
+Tools used (e.g., FTK Imager, dd, dcfldd).
+Hashing evidence (MD5/SHA256) for integrity.
+
+Preservation:
+Chain of custody maintained.
+Write-blockers used on physical media.
+
+Analysis:
+Disk, memory, logs, network traffic, registry, malware artifacts.
+
+Reporting:
+Document every step and finding.
+
+4. Findings
+Break this down into clear categories:
+a) File System Analysis
+Suspicious files, deleted files, hidden partitions.
+Timestamps manipulation (MAC times).
+
+b) Malware/Executable Analysis
+Hashes, paths, compile times.
+Obfuscation or persistence mechanisms.
+
+c) Network Forensics
+Suspicious connections (IP, port, protocol).
+Data exfiltration evidence.
+Use tools like Wireshark, Zeek, NetFlow.
+
+d) Memory Forensics
+Live malware, decrypted strings, credentials.
+Tools: Volatility, Rekall.
+
+e) Log Analysis
+Windows Event Viewer, syslog, auth logs.
+Logins, errors, privilege escalation.
+
+f) User & Account Analysis
+New accounts created, privilege misuse.
+Correlation with timestamps and logs.
+
+5. Indicators of Compromise (IOCs)
+List:
+Malicious IPs or domains
+Hashes (MD5/SHA1/SHA256)
+File paths or process names
+Registry keys or command history
+
+6. Impact Assessment
+CIA Breakdown:
+Confidentiality: Was sensitive data accessed?
+Integrity: Were files or systems altered?
+Availability: Was service disrupted?
+
+7. Conclusions
+Root Cause: How the breach happened.
+Attacker Goal: Financial gain, data theft, insider revenge, etc.
+Persistence/Backdoors: Still active or not?
+
+8. Recommendations
+Short-term: Patch, isolate, reset passwords.
+Long-term: Monitoring, training, policy changes.
+Suggestions for better hardening (Defense in Depth, Least Privilege).
+
+9. Appendices
+Hash logs and verification
+Tool outputs (Wireshark, Volatility, sha256sum, etc.)
+Screenshots of artifacts
+Full list of artifacts analyzed
+
+Tools to Mention
+dd / dcfldd – Disk imaging
+sha256sum – Hashing evidence
+Volatility – Memory analysis
+Wireshark – Network capture
+FTK Imager / Autopsy – GUI-based analysis
+strings, hexdump, grep, file – Low-level investigation
+
+🔐 Legal & Ethical Reminders
+Do not alter original evidence.
+Respect data protection laws (e.g., GDPR).
+Document every step and decision.

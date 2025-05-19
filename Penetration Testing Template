@@ -17,7 +17,7 @@ __________________________________________________________________________
 Scope and Rules of Engagement:
 
 🔹 1.2 Enumeration
-Tools used (e.g., nmap -p [1-1000] -sV -sC [example.co.uk], ping, whois, enum4linux-ng -As), traceroute:
+Tools used (e.g., nmap -p [1-1000] -sV -sC [example.co.uk], ping, whois, enum4linux-ng -As), traceroute, directory traversal (../../../pwd:
 
 Vulnerability scanning: _____________________________
 

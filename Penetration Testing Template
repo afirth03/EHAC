@@ -72,7 +72,11 @@ metasploit
 
 Findings
 
-Vulnerability	Risk Level	Impact (CIA)	Exploited Using
+Vulnerability	Risk Level	| Impact (CIA)	| Exploited Using
+--------------------------------------------------------------
+                          |               |
+--------------------------------------------------------------
+                          |               |
 
 Recommendations
 List of mitigation steps, prioritized by severity.

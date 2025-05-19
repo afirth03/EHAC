@@ -66,6 +66,10 @@ Brief overview for non-technical stakeholders.
 Methodology
 Step-by-step of what you did and tools used.
 
+wireshark
+burpsuite
+metasploit
+
 Findings
 
 Vulnerability	Risk Level	Impact (CIA)	Exploited Using

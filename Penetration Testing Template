@@ -73,5 +73,7 @@ Vulnerability	Risk Level	Impact (CIA)	Exploited Using
 Recommendations
 List of mitigation steps, prioritized by severity.
 
+e.g Sanitisation, hash passwords, paramaterised querires for SQL, improve firewall rules
+
 Appendices
 Include logs, scan outputs, payloads, screenshots.

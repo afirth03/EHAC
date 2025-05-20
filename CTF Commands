@@ -9,7 +9,7 @@ exiftool
 xxd or hexdump
 file
 perl
-Unzip
+unzip
 Try both echo and printf - they give different hashes - try using ‘echo -n… ‘ 
 
 	Known Vulnerability e.g heartbleed
@@ -21,7 +21,7 @@ steghide extract -sf ...
 binwalk -D='.*' [image]
 openssl enc -d -[type of encryption] -in [file to decrypt] -out [where its extracted] -pass pass:["password"] -pbkdf2
 
-	XXS
+	XSS
 onclick=''
 onerror=''
 onmouseover=''
@@ -48,7 +48,7 @@ john --format=raw-md5 [file]
 
 	Disk imaging
 E2tools - if its a ex2t file
-e2ls / e2tls -al
+e2ls / e2ls -al
 e2cp
 Sudo mount [img] [file] (make directory first with mkdir)
 
@@ -63,6 +63,6 @@ If extract bytes isn’t working: Follow the stream type e.g if its TCP follow t
 File -> Export Objects -> HTTP/TCP etc.. -> Save all
 Potentially - follow stream - tcp - change format to raw - save as .bin file and extract
 
-Hex Conversion
+	Hex Conversion
 
 printf "%d\n" 0x60

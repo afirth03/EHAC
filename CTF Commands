@@ -3,8 +3,11 @@ CTF Commands
 	General
 strings
 grep
-echo '...' | base[32][64] -d
+echo [-n] '...' | base[32][64] -d
+printf '...' | base[32][64] -d
 sha1sum
+md5sum
+sha256sum
 exiftool
 xxd or hexdump
 file

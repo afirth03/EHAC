@@ -60,4 +60,5 @@ $(perl -e 'print "A"x<EXTRA> . "\xef\xbe\xad\xde"')
 	Wireshark
 If extract bytes isn’t working: Follow the stream type e.g if its TCP follow that and then change the view to “Raw” then save as a .bin
 File -> Export Objects -> HTTP/TCP etc.. -> Save all
+Potentially - follow stream - tcp - change format to raw - save as .bin file and extract
 

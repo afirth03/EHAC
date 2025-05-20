@@ -80,6 +80,7 @@ Persistence/Backdoors: Still active or not?
 Short-term: Patch, isolate, reset passwords.
 Long-term: Monitoring, training, policy changes.
 Suggestions for better hardening (Defense in Depth, Least Privilege).
+Sanitisation
 
 9. Appendices
 Hash logs and verification

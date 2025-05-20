@@ -24,9 +24,9 @@ openssl enc -d -[type of encryption] -in [file to decrypt] -out [where its extra
 onclick=''
 onerror=''
 onmouseover=''
-href.[..php]
+href.[...php] e.g location.href='fulldictionary.php';
 <script>alert()</script>
-<img src='' >
+<img src=x onerror=alert() >
 javascript:alert()
 Data:text/javascript,alert()
 

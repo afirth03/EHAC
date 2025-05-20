@@ -62,3 +62,6 @@ If extract bytes isn’t working: Follow the stream type e.g if its TCP follow t
 File -> Export Objects -> HTTP/TCP etc.. -> Save all
 Potentially - follow stream - tcp - change format to raw - save as .bin file and extract
 
+Hex Conversion
+
+printf "%d\n" 0x60

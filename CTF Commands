@@ -58,8 +58,10 @@ Sudo mount [img] [file] (make directory first with mkdir)
 	Git
 git log -p [file]
 
-        Overwriting a file
+        Overwriting a file/ Buffer Overflow
 $(perl -e 'print "A"x<EXTRA> . "\xef\xbe\xad\xde"')
+nm -g -C [file] // this will give you the headings
+objdump -x [file] | grep 'CI79F3UN'
 
 	Wireshark
 If extract bytes isn’t working: Follow the stream type e.g if its TCP follow that and then change the view to “Raw” then save as a .bin

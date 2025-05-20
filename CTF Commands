@@ -16,7 +16,7 @@ unzip
 Try both echo and printf - they give different hashes - try using ‘echo -n… ‘ 
 
 	Known Vulnerability e.g heartbleed
-msfconsole -> search '...'
+msfconsole -> search '...' e.g CVE-2015-0160
 nmap -p [port] --script [script]
 
 	Steganography

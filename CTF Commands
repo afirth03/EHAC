@@ -4,6 +4,7 @@ CTF Commands
 strings
 grep
 echo '...' | base[32][64] -d
+sha1sum
 exiftool
 xxd or hexdump
 file

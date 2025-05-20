@@ -95,7 +95,52 @@ Wireshark – Network capture
 FTK Imager / Autopsy – GUI-based analysis
 strings, hexdump, grep, file – Low-level investigation
 
-🔐 Legal & Ethical Reminders
+                                                                Phases of Forensic Investigation (ISO/IEC 27037-43)
+Identify: Locate potential digital evidence (PDE).
+
+Collect: Take control of the device (physical seizure).
+
+Acquire: Create forensic (bitwise) copies without altering original data.
+
+Preserve: Maintain integrity using hashes and chain of custody.
+
+Analyze: Examine for relevant artifacts.
+
+Interpret: Deduce meaning, timelines, and context.
+
+Report: Document findings in a structured, reproducible manner.
+
+ACPO Principles (UK-based Best Practice)
+Principle 1: Do not alter data on original media.
+
+Principle 2: If alteration is necessary, document and justify it.
+
+Principle 3: Maintain a full audit trail (chain of custody).
+
+Principle 4: Investigative lead is accountable for adherence.
+
+File System & Metadata Analysis
+File system knowledge is critical (FAT, NTFS, etc.)
+
+Tools inspect deleted files, slack space, alternate data streams, and prefetch/cache.
+
+Recycle Bin Forensics: NTFS stores deleted files as $I (metadata) and $R (data) files.
+
+Timestamps: Track Created, Modified, Accessed times (CMA) with caveats (e.g., timezone issues).
+
+Data Recovery & Evidence
+Unallocated Space: Files may be recoverable even after deletion.
+
+MRUs, lnk Files, Registry Entries: Track recent activity, software usage, and connected devices.
+
+Windows Registry: A goldmine for system and user-level forensic artifacts.
+
+Triage & Planning
+Triage: Quickly evaluate evidence sources (e.g., known bad file hashes).
+
+Planning: SOPs (Standard Operating Procedures) are crucial.
+
+Plans should evolve and tie to an asset register for forensic readiness.
 Do not alter original evidence.
 Respect data protection laws (e.g., GDPR).
 Document every step and decision.

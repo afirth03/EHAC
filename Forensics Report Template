@@ -19,6 +19,7 @@ Any exclusions or assumptions.
 Use forensic best practices for evidence handling:
 Acquisition:
 Tools used (e.g., FTK Imager, dd, dcfldd).
+Take a logical (partial) vs physical (full) copy in Acqusition (taking images) compared to collection (taking the physical device).
 Hashing evidence (MD5/SHA256) for integrity.
 
 Preservation:
@@ -65,7 +66,7 @@ Hashes (MD5/SHA1/SHA256)
 File paths or process names
 Registry keys or command history
 
-6. Impact Assessment
+6. Impact Assessment  §
 CIA Breakdown:
 Confidentiality: Was sensitive data accessed?
 Integrity: Were files or systems altered?

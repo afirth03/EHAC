@@ -11,6 +11,7 @@ sha256sum
 exiftool
 xxd or hexdump
 file
+stat
 perl
 unzip
 Try both echo and printf - they give different hashes - try using ‘echo -n… ‘ 
